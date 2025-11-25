@@ -69,7 +69,7 @@
   }
 }
 
-// Creates a bullet item
+// Creates a monospace bullet item
 #let tag(content) = [
   #context [
     #box(
@@ -86,12 +86,35 @@
   ]
 ]
 
-// A group of tags
+// Creates a group of tags
 #let tags(..items) = {
   box(width: 100%, clip: true, {
     for item in items.pos() {
       tag(item)
-      h(4pt) // Add horizontal spacing between tags
+      h(4pt)
+    }
+  })
+}
+
+// Creates a monospace bullet item with an icon
+#let iconTag(name, icon: none) = {
+  if icon == none {
+    icon = "assets/devicons/svg/" + name + ".svg"
+  }
+
+  let base = 1em * 0.15
+  tag([
+    #box(baseline: base, image(icon, height: 1em))
+    #text(font: "IBM Plex Mono")[ #name ]
+  ])
+}
+
+// Creates a group of iconTags
+#let iconTags(..items) = {
+  box(width: 100%, clip: true, {
+    for (name, icon) in items.pos() {
+      iconTag(name, icon)
+      h(4pt)
     }
   })
 }

@@ -174,3 +174,13 @@ The `#tags` component is used to display a list of tags. We use these for listin
     "Revenue Growth"
   )
 ```
+
+There is also the option to use iconTags which provide a small image in front of the text.
+
+```typst
+  #iconTags(
+    ("rust", none),                         // uses assets/devicons/svg/rust.svg
+    ("python", "assets/custom/python.svg"), // custom icon
+    ("typst", none),
+  )
+```
